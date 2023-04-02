@@ -13,7 +13,11 @@ export class BankCardService {
 			select: {
 				id: true,
 				name: true,
-				balance: true
+				balance: true,
+				number: true,
+				csv: true,
+				expiry: true,
+				valid: true
 			}
 		})
 
@@ -25,7 +29,20 @@ export class BankCardService {
 			data: {
 				userId,
 				name: dto.name,
-				balance: dto.balance
+				balance: dto.balance,
+				number: dto.number,
+				csv: dto.csv,
+				expiry: dto.expiry,
+				valid: dto.valid
+			},
+			select: {
+				name: true,
+				balance: true,
+				id: true,
+				number: true,
+				csv: true,
+				expiry: true,
+				valid: true
 			}
 		})
 
@@ -37,6 +54,15 @@ export class BankCardService {
 			where: { id: cardId },
 			data: {
 				balance: dto.balance
+			},
+			select: {
+				name: true,
+				balance: true,
+				id: true,
+				number: true,
+				csv: true,
+				expiry: true,
+				valid: true
 			}
 		})
 

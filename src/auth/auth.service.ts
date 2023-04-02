@@ -17,7 +17,11 @@ export class AuthService {
 		const user = await this.validateUser(dto)
 		const tokens = await this.issueTokens(user.id)
 
-		return { user: this.returnUserFields(user), ...tokens }
+		return {
+			user: this.returnUserFields(user),
+			message: 'Succesfull login',
+			...tokens
+		}
 	}
 
 	async getNewTokens(refreshToken: string) {
@@ -61,6 +65,7 @@ export class AuthService {
 
 		return {
 			user: this.returnUserFields(user),
+			message: 'Succesfull registered',
 			...tokens
 		}
 	}

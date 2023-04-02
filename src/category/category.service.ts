@@ -11,10 +11,14 @@ export class CategoryService {
 			data: {
 				name: dto.name,
 				userId
+			},
+			select: {
+				id: true,
+				name: true
 			}
 		})
 
-		return { category }
+		return { category, message: 'Successfully created' }
 	}
 
 	async getCategories(userId: number) {
@@ -30,6 +34,8 @@ export class CategoryService {
 	}
 
 	async deleteCategory(id: number) {
-		return this.prisma.category.delete({ where: { id } })
+		const category = await this.prisma.category.delete({ where: { id } })
+
+		return { message: 'Succesfully deleted' }
 	}
 }

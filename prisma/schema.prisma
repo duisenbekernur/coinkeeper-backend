@@ -25,9 +25,15 @@ model Order {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  comment String
-  User    User?  @relation(fields: [userId], references: [id])
-  userId  Int?   @map("user_id")
+  comment  String
+  amount   Int
+  cardName String @map("card_name")
+  cardId   Int    @map("card_id")
+
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?  @map("user_id")
+
+  categories Int[]
 }
 
 model BankCard {
@@ -37,8 +43,14 @@ model BankCard {
 
   name    String
   balance Int
-  User    User?  @relation(fields: [userId], references: [id])
-  userId  Int?   @map("user_id")
+
+  number String
+  csv    Int
+  valid  String
+  expiry String
+
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?  @map("user_id")
 }
 
 model User {
