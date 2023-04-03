@@ -12,6 +12,10 @@ export class OrderService {
 			select: { balance: true }
 		})
 
+		if (currentCard.balance - dto.amount < 0) {
+			return { message: "Card doesn't have enough money" }
+		}
+
 		const bankCard = await this.prisma.bankCard.update({
 			where: { id: dto.cardId },
 			data: {
