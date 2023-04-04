@@ -36,4 +36,10 @@ export class BankCardController {
 	async deleteCard(@Param('cardId') cardId: number) {
 		return this.bankCardService.deleteCard(+cardId)
 	}
+
+	@Auth()
+	@Get('/total-balance')
+	async getTotalBalance(@CurrentUser('id') userId: number) {
+		return this.bankCardService.getBalance(userId)
+	}
 }

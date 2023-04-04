@@ -69,6 +69,21 @@ export class BankCardService {
 		return card
 	}
 
+	async getBalance(userId: number) {
+		const cards = await this.prisma.bankCard.findMany({
+			where: {
+				userId
+			},
+			select: {
+				balance: true
+			}
+		})
+
+		let totalBalance: number = 0
+		cards.forEach(card => (totalBalance += card.balance))
+		return { totalBalance }
+	}
+
 	async deleteCard(cardId: number) {
 		return await this.prisma.bankCard.delete({
 			where: { id: cardId }

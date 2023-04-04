@@ -36,7 +36,8 @@ export class OrderService {
 				id: true,
 				comment: true,
 				cardName: true,
-				amount: true
+				amount: true,
+				createdAt: true
 			}
 		})
 
@@ -53,7 +54,8 @@ export class OrderService {
 				cardName: true,
 				amount: true,
 				comment: true,
-				categories: true
+				categories: true,
+				createdAt: true
 			},
 			orderBy: {
 				createdAt: 'desc'
