@@ -85,8 +85,10 @@ export class BankCardService {
 	}
 
 	async deleteCard(cardId: number) {
-		return await this.prisma.bankCard.delete({
+		const card = await this.prisma.bankCard.delete({
 			where: { id: cardId }
 		})
+
+		return {message: "SUCCESS"}
 	}
 }
